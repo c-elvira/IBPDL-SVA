@@ -9,7 +9,6 @@
 
 
 sva::Node::Node(int D, int N) {
-
 	this->vec_d.resize(D);
 	this->vec_w.resize(N);
 
@@ -19,7 +18,6 @@ sva::Node::Node(int D, int N) {
 
 
 sva::Node::Node(int D, int N, const Eigen::VectorXd &dic) : sva::Node::Node(D, N) {
-
 	if (dic.size() != D )
 		throw std::invalid_argument( "dic has size != D" );
 
@@ -27,7 +25,6 @@ sva::Node::Node(int D, int N, const Eigen::VectorXd &dic) : sva::Node::Node(D, N
 } 
 
 sva::Node::Node(int D, int N, const Eigen::VectorXd &dic, const Eigen::VectorXd &coefs) : sva::Node::Node(D, N) {
-
 	if (dic.size() != D )
 		throw std::invalid_argument( "dic has size != D" );
 
@@ -45,10 +42,7 @@ sva::Node::Node(int D, int N, const Eigen::VectorXd &dic, const Eigen::VectorXd 
 } 
 
 
-
-
 sva::DictAndCoef::DictAndCoef(int D, int N) {
-
 	this->D = D;
 	this->N = N;
 
@@ -59,7 +53,6 @@ sva::DictAndCoef::DictAndCoef(int D, int N) {
 
 
 sva::DictAndCoef::~DictAndCoef() {
-
 	if (this->length > 0) {
 
 		sva::Node* node = this->head;
@@ -76,13 +69,11 @@ sva::DictAndCoef::~DictAndCoef() {
 
 
 void sva::DictAndCoef::add(const Eigen::VectorXd& new_d) {
-
 	this->add(new_d, Eigen::VectorXd::Zero(this->N));
 }
 
 
 void sva::DictAndCoef::add(const Eigen::VectorXd& new_d, int n, double w) {
-
 	Eigen::VectorXd vec_w = Eigen::VectorXd::Zero(this->N);
 	vec_w(n) = w;
 
@@ -91,7 +82,6 @@ void sva::DictAndCoef::add(const Eigen::VectorXd& new_d, int n, double w) {
 
 
 void sva::DictAndCoef::add(const Eigen::VectorXd& new_d, const Eigen::VectorXd& new_coefs) {
-
 	sva::Node *newNode = new sva::Node(this->D, this->N, new_d, new_coefs);
 
 	if (this->length == 0) {
@@ -111,7 +101,6 @@ void sva::DictAndCoef::add(const Eigen::VectorXd& new_d, const Eigen::VectorXd& 
 
 
 void sva::DictAndCoef::save(std::string filename) {
-
 	// Create format
 	Eigen::IOFormat jsonFormat(Eigen::FullPrecision, 0, 
 		", ", ",\n", "\t\t[", "]", "[\n", "\n\t]");
@@ -156,7 +145,6 @@ void sva::DictAndCoef::save(std::string filename) {
 
 
 void sva::DictAndCoef::setCoefToZero(int n) {
-
 	sva::Node* node = this->head;
 	while (node) {
 		
@@ -171,7 +159,6 @@ void sva::DictAndCoef::setCoefToZero(int n) {
 
 
 void sva::DictAndCoef::setCoef(const Eigen::VectorXd &coefs, int n) {
-
 	if (coefs.size() != this->length)
 		throw std::invalid_argument( "setCoef: size does not match" );
 
@@ -195,7 +182,6 @@ void sva::DictAndCoef::setCoef(const Eigen::VectorXd &coefs, int n) {
 
 
 void sva::DictAndCoef::get_featk(int k, Eigen::MatrixXd &dic, int t) const {
-
 	int i = 0;
 	sva::Node* node = this->head;
 	while (node) {
@@ -212,7 +198,6 @@ void sva::DictAndCoef::get_featk(int k, Eigen::MatrixXd &dic, int t) const {
 
 
 void sva::DictAndCoef::get_support(int n, Eigen::VectorXi &output) const{
-
 	//int sparsityLevel = output.size();
 	int i = 0;
 	int k = 0;
@@ -231,7 +216,6 @@ void sva::DictAndCoef::get_support(int n, Eigen::VectorXi &output) const{
 
 
 void sva::DictAndCoef::computeDWn(int n, Eigen::VectorXd &output) const {
-
 	output = Eigen::VectorXd::Zero(this->D);
 
 	sva::Node* node = this->head;
@@ -243,7 +227,6 @@ void sva::DictAndCoef::computeDWn(int n, Eigen::VectorXd &output) const {
 
 
 void sva::DictAndCoef::computeDHWn(int n, const Eigen::custom::VectorXb& cvecMask, Eigen::VectorXd &vecOutput) const {
-
 	vecOutput = Eigen::VectorXd::Zero(this->D);
 
 	sva::Node* node = this->head;
@@ -255,14 +238,11 @@ void sva::DictAndCoef::computeDHWn(int n, const Eigen::custom::VectorXb& cvecMas
 
 
 void sva::DictAndCoef::print() {
-
-    std::cout << "This dictionary contains " << this->length << " elements" << std::endl;
-    
+    std::cout << "This dictionary contains " << this->length << " elements" << std::endl;   
 }
 
 
 void sva::DictAndCoef::print_KcolOfD(int k) {
-
 	if (k >= int(this->length))
 		k = this->length;
 	else if (k < 0)
@@ -283,7 +263,6 @@ void sva::DictAndCoef::print_KcolOfD(int k) {
 
 
 void sva::DictAndCoef::clean_unuse_node() {
-
 	sva::Node* node = this->head;
 	while (node) {
 
@@ -302,7 +281,6 @@ void sva::DictAndCoef::clean_unuse_node() {
 
 
 unsigned int sva::DictAndCoef::get_mk(unsigned int k) const {
-
 	sva::Node* node = this->head;
 	for (unsigned int t = 0; t < this->length; ++t) {
 		
@@ -317,7 +295,6 @@ unsigned int sva::DictAndCoef::get_mk(unsigned int k) const {
 
 
 void sva::DictAndCoef::chainToMatrix(Eigen::MatrixXd &dic, Eigen::MatrixXd &coefs) const {
-
 	dic.resize(this->D, this->length);
 	coefs.resize(this->length, this->N);
 

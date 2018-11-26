@@ -14,7 +14,6 @@
  * @return [description]
  */
 double sva::utils::compute_l2_error(const Eigen::VectorXd& y, const sva::DictAndCoef &dictAndCoef, int n) {
-
 	// Buffer
 	Eigen::VectorXd buf = y;
 
@@ -42,7 +41,6 @@ double sva::utils::compute_l2_error(const Eigen::VectorXd& y, const sva::DictAnd
  * @return the Kx1 coefficient array
  */
 int sva::utils::it_omp(const Eigen::VectorXd &y, const sva::DictAndCoef &dictAndCoef, Eigen::VectorXd &new_w, int t, int n) {
-
 	int D = dictAndCoef.get_D();
 	int K = dictAndCoef.get_K();
 	int k = 0;
@@ -116,7 +114,6 @@ int sva::utils::it_omp(const Eigen::VectorXd &y, const sva::DictAndCoef &dictAnd
 
 
 double sva::utils::computeCoherence(const Eigen::MatrixXd& dic) {
-
 	//int D = dic.rows();
 	int K = dic.cols();
 
@@ -134,7 +131,6 @@ double sva::utils::computeCoherence(const Eigen::MatrixXd& dic) {
 
 
 void sva::utils::solveLeastSquarePb(const Eigen::MatrixXd& yobs, sva::DictAndCoef &dictAndCoef, const Eigen::VectorXi &support, int n) {
-
 	int sparsityLevel = support.size();
 	int D = yobs.rows();
 
@@ -186,24 +182,13 @@ void sva::utils::solveLeastSquarePb(const Eigen::MatrixXd& yobs, sva::DictAndCoe
 	}
 }
 
-
-
-
-
-
 /**
  * 
  * 	Inpainting tools
  * 
  */
 
-
-
-
-
-
 int sva::utils::it_ompMasked(const Eigen::VectorXd &cvecYobs,  const Eigen::custom::VectorXb& cvecMask, const sva::DictAndCoef &dictAndCoef, Eigen::VectorXd &new_w, int t, int n) {
-
 	int iD = dictAndCoef.get_D();
 	int iK = dictAndCoef.get_K();
 	int k = 0;
@@ -277,7 +262,6 @@ int sva::utils::it_ompMasked(const Eigen::VectorXd &cvecYobs,  const Eigen::cust
 
 
 void sva::utils::solveMaskedLeastSquarePb(const Eigen::VectorXd& cvecYobs, const Eigen::custom::VectorXb& cvecMask, sva::DictAndCoef &dictAndCoef, const Eigen::VectorXi &support, int n) {
-	
 	int sparsityLevel = support.size();
 	int D = cvecYobs.size();
 

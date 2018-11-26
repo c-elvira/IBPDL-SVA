@@ -7,7 +7,6 @@
 
 
 void SvaDl_cythonInterface::run(const RowMajorArrayMap &Y, int nbIt, double lbd_reg1, double lbd_reg2) {
-
 	sva::DictAndCoef *dictchain = sva::svaDL(Y, nbIt, lbd_reg1, lbd_reg2);
 
 	dictchain->chainToMatrix(this->dic, this->coefs);
@@ -15,7 +14,6 @@ void SvaDl_cythonInterface::run(const RowMajorArrayMap &Y, int nbIt, double lbd_
 }
 
 void SvaDlInpainting_cythonInterface::run(const RowMajorArrayMap &Y, const RowMajorBoolArrayMap &cmatMask, int nbIt, double lbd_reg1, double lbd_reg2) {
-
 	sva::DictAndCoef *dictchain = sva::svaDLinpainting(Y, cmatMask.cast<bool>(), nbIt, lbd_reg1, lbd_reg2);
 
 	dictchain->chainToMatrix(this->dic, this->coefs);

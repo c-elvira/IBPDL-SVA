@@ -9,7 +9,6 @@
 
 
 sva::DictAndCoef* sva::svaDLinpainting(const Eigen::MatrixXd &cmatYobs, const Eigen::custom::MatrixXb &cmatMask, int nbIt, double lbd_reg1, double lbd_reg2) {
-
 	int iD = cmatYobs.rows();
 	int iN = cmatYobs.cols();
 
@@ -39,7 +38,6 @@ sva::DictAndCoef* sva::svaDLinpainting(const Eigen::MatrixXd &cmatYobs, const Ei
 
 
 void sva::inpainting::_update_D(const Eigen::MatrixXd &cmatYobs, const Eigen::custom::MatrixXb &cmatMask, sva::DictAndCoef &dictAndCoef, double varnoise) {
-
 	int iK = dictAndCoef.get_K();
 	int iD = dictAndCoef.get_D();
 
@@ -101,7 +99,6 @@ void sva::inpainting::_update_D(const Eigen::MatrixXd &cmatYobs, const Eigen::cu
 
 
 void sva::inpainting::_update_W_omp(const Eigen::MatrixXd &cmatYobs, const Eigen::custom::MatrixXb &cmatMask, sva::DictAndCoef &dictAndCoef, double lbd_reg1, double lbd_reg2, bool addAtom) {
-
 	int iK = dictAndCoef.get_K();
 	int iD = dictAndCoef.get_D();
 	int iN = dictAndCoef.get_N();
@@ -243,4 +240,3 @@ void sva::inpainting::_update_W_omp(const Eigen::MatrixXd &cmatYobs, const Eigen
 		}
 	}
 }
-

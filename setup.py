@@ -27,6 +27,7 @@ else:
 
 
 if sys.platform == 'darwin':
+    # OSX
     extensions = [
         Extension(
             'cSvaIbpDl',
@@ -38,7 +39,7 @@ else:
         Extension(
             'cSvaIbpDl',
             glob('*.pyx') + glob('*.cxx'),
-            extra_compile_args=["-stdlib=libstdc++", "-std=c++11"])
+            extra_compile_args=["-std=c++11"])
     ]
 
 

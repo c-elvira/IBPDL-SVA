@@ -14,7 +14,7 @@ cache: pip
 # Check available versions with `pyenv install --list'.
 matrix:
     include:
-        - os: linux
+        - os: osx
           python: 3.5
 
 # Command to install dependencies for each configuration.

@@ -101,4 +101,3 @@ setup(
     #]
 )
 
-#run_setup('setupBis.py', script_args=sys.argv[1:],stop_after='run')

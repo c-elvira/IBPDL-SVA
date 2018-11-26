@@ -20,6 +20,7 @@ matrix:
 # Command to install dependencies for each configuration.
 install:
 # For OSX, you may want to call a script installing virtual env and so on.
+  - pip install -q numpy cython
   - ./install.sh
 
 # Command to run tests. These are run for each configuration

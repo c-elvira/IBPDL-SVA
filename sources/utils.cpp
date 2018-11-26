@@ -119,7 +119,6 @@ double sva::utils::computeCoherence(const Eigen::MatrixXd& dic) {
 	double mu = 0;
 	for (int k1 = 0; k1 < K; ++k1) {
 		for (int k2 = k1+1; k2 < K; ++k2) {
-
 			double buf = std::abs( dic.col(k1).dot(dic.col(k2)) );
 			mu = buf > mu ? buf : mu;
 		}

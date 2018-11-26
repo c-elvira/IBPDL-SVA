@@ -1,4 +1,5 @@
 # IBPDL-SVA
+[![Build Status](https://travis-ci.com/c-elvira/IBPDL-SVA.svg?branch=master)](https://travis-ci.com/c-elvira/IBPDL-SVA)
 
 This repository implements the IBP-DL SVA algorithm from [dang2018,elvira2018].
 

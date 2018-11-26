@@ -33,8 +33,7 @@ sva::DictAndCoef* sva::svaDL(const Eigen::MatrixXd &Y, int nbIt, double lbd_reg1
 	// Algorithm
 	sva::DictAndCoef *dictCoef = new sva::DictAndCoef(D, N);
 
-	for (int t = 0; t < nbIt; ++t) {
-		
+	for (int t = 0; t < nbIt; ++t) {	
 		// OMP step
 		sva::_update_W_omp(Y, *dictCoef, lbd_reg1, lbd_reg2);
 
@@ -60,11 +59,9 @@ void sva::_update_D(const Eigen::MatrixXd &cmatYobs, sva::DictAndCoef &dictAndCo
 	if (iK == 0)
 		return;
 	   
-	for (int d = 0; d < iD; ++d) {
-		
+	for (int d = 0; d < iD; ++d) {	
 		Eigen::MatrixXd matBuf = Eigen::MatrixXd::Zero(iK, iK);
 		Eigen::VectorXd rwDupd = Eigen::VectorXd::Zero(iK);
-
 
 		// 1. buf : (WW^t + varnoise * K * I_K)^{-1}
 		sva::Node* node1 = dictAndCoef.get_head();
@@ -74,7 +71,6 @@ void sva::_update_D(const Eigen::MatrixXd &cmatYobs, sva::DictAndCoef &dictAndCo
 			sva::Node* node2 = dictAndCoef.get_head();
 
 			while(node2) {
-
 				matBuf(irow, icol) = node1->vec_w.dot(node2->vec_w);
 				matBuf(icol, irow) = matBuf(irow, icol); // by symetry
 
@@ -137,7 +133,6 @@ void sva::_update_W_omp(const Eigen::MatrixXd &Yobs, sva::DictAndCoef &dictAndCo
 		}
 
 	for (int n = 0; n < N; ++n) {
-
 		/*****************************************
 		 *
 		 *			1. Performs OMP
@@ -156,7 +151,6 @@ void sva::_update_W_omp(const Eigen::MatrixXd &Yobs, sva::DictAndCoef &dictAndCo
 
 		int sparsityLevel = 0;
 		while (K > 0) { // if K == 0 this step is avoided
-
 			// // 1.1 Add coefficient
 			Eigen::VectorXd new_w;
 			int newk = sva::utils::it_omp(Yobs.col(n), dictAndCoef, new_w, sparsityLevel, n);
@@ -214,7 +208,6 @@ void sva::_update_W_omp(const Eigen::MatrixXd &Yobs, sva::DictAndCoef &dictAndCo
 		 *
 		*****************************************/
 		if (addAtom) {
-
 			double err_before = (Yobs.col(n) - Dw_n).norm();
 			err_before *= err_before;
 
@@ -232,8 +225,7 @@ void sva::_update_W_omp(const Eigen::MatrixXd &Yobs, sva::DictAndCoef &dictAndCo
 			double a1 = err_after + diffregu * (double(K) + 1.) + lbd_reg2 * (sparsityLevel + 1.);
 			double a0 = err_before + diffregu * double(K) + lbd_reg2 * sparsityLevel;
 
-			if (a1 < a0) {
-				
+			if (a1 < a0) {		
 				// Add feature
 				dictAndCoef.add(buf, n, coefnew);
 				K++;

@@ -1,5 +1,6 @@
 # IBPDL-SVA
 [![Build Status](https://travis-ci.com/c-elvira/IBPDL-SVA.svg?branch=master)](https://travis-ci.com/c-elvira/IBPDL-SVA)
+[![CodeFactor](https://www.codefactor.io/repository/github/c-elvira/ibpdl-sva/badge)](https://www.codefactor.io/repository/github/c-elvira/ibpdl-sva)
 
 This repository implements the IBP-DL SVA algorithm from [dang2018,elvira2018].
 

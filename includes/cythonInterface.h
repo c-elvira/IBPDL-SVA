@@ -8,7 +8,6 @@ typedef Eigen::Map<Eigen::Array<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::R
 typedef Eigen::Map<Eigen::Array<int, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> > RowMajorBoolArrayMap;
 
 class SvaDl_cythonInterface {
-
 public:
     SvaDl_cythonInterface() {};
     ~SvaDl_cythonInterface() {};
@@ -20,13 +19,11 @@ public:
     Eigen::MatrixXd &get_coefs() {return this->coefs;}
 
 private:
-
 	Eigen::MatrixXd dic;
 	Eigen::MatrixXd coefs;
 };
 
 class SvaDlInpainting_cythonInterface {
-
 public:
     SvaDlInpainting_cythonInterface() {};
     ~SvaDlInpainting_cythonInterface() {};
@@ -38,7 +35,6 @@ public:
     Eigen::MatrixXd &get_coefs() {return this->coefs;}
 
 private:
-
 	Eigen::MatrixXd dic;
 	Eigen::MatrixXd coefs;
 };

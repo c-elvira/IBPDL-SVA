@@ -9,7 +9,6 @@
 namespace sva {
 
 	struct Node {
-
 		Node(int D, int N);
 		Node(int D, int N, const Eigen::VectorXd &dic);
 		Node(int D, int N, const Eigen::VectorXd &dic, const Eigen::VectorXd &coefs);
@@ -28,7 +27,6 @@ namespace sva {
 
 
 	class DictAndCoef {
-
 	public:
 		/**
 		 * @brief constructor
@@ -91,7 +89,6 @@ namespace sva {
 		const sva::Node *get_head() const { return this->head; }
 
 	protected:
-
 		unsigned int D, N;
 		unsigned int length;
 		sva::Node *head;

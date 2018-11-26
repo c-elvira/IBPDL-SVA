@@ -2,6 +2,7 @@
 Custom
 
 !lib/lib.md
+!lib/*
 
 # Created by https://www.gitignore.io/api/c,c++,cmake,latex,python,jupyternotebook
 # Edit at https://www.gitignore.io/?templates=c,c++,cmake,latex,python,jupyternotebook
@@ -488,3 +489,4 @@ pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/c,c++,cmake,latex,python,jupyternotebook
 
+!lib/lib.md

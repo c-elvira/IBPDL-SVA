@@ -24,7 +24,6 @@
 
 
 sva::DictAndCoef* sva::svaDL(const Eigen::MatrixXd &Y, int nbIt, double lbd_reg1, double lbd_reg2) {
-
 	int D = Y.rows();
 	int N = Y.cols();
 
@@ -55,7 +54,6 @@ sva::DictAndCoef* sva::svaDL(const Eigen::MatrixXd &Y, int nbIt, double lbd_reg1
 
 
 void sva::_update_D(const Eigen::MatrixXd &cmatYobs, sva::DictAndCoef &dictAndCoef, double varnoise) {
-
 	int iK = dictAndCoef.get_K();
 	int iD = dictAndCoef.get_D();
 
@@ -116,9 +114,7 @@ void sva::_update_D(const Eigen::MatrixXd &cmatYobs, sva::DictAndCoef &dictAndCo
 }
 
 
-
 void sva::_update_W_omp(const Eigen::MatrixXd &Yobs, sva::DictAndCoef &dictAndCoef, double lbd_reg1, double lbd_reg2, bool addAtom) {
-
 	int K = dictAndCoef.get_K();
 	int D = dictAndCoef.get_D();
 	int N = dictAndCoef.get_N();
@@ -203,7 +199,6 @@ void sva::_update_W_omp(const Eigen::MatrixXd &Yobs, sva::DictAndCoef &dictAndCo
 		dictAndCoef.computeDWn(n, Dw_n);
 		residual -= Dw_n;
 
-
 		/*****************************************
 		 *
 		 *		2. Delete unused feature
@@ -212,8 +207,6 @@ void sva::_update_W_omp(const Eigen::MatrixXd &Yobs, sva::DictAndCoef &dictAndCo
 
 		dictAndCoef.clean_unuse_node();
 		K = dictAndCoef.get_K();
-
-
 
 		/*****************************************
 		 *
@@ -257,4 +250,3 @@ void sva::_update_W_omp(const Eigen::MatrixXd &Yobs, sva::DictAndCoef &dictAndCo
 		}
 	}
 }
-

@@ -17,11 +17,12 @@ if os.path.isdir(path_lib):
     print('Eigen is already installed')
     
 else:
+    os.makedirs(path_lib)
     url_eigen = 'http://bitbucket.org/eigen/eigen/get/3.3.4.zip'
     file = wget.download(url_eigen, out='lib/')
 
     with zipfile.ZipFile(file,"r") as zip_ref:
-        zip_ref.extractall("lib/Eigen/")
+        zip_ref.extractall(path_lib)
     os.remove(file)
 
 

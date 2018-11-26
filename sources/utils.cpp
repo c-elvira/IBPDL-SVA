@@ -61,7 +61,6 @@ int sva::utils::it_omp(const Eigen::VectorXd &y, const sva::DictAndCoef &dictAnd
 	resisdual = y;
 	const sva::Node* node = dictAndCoef.get_head();
 	while(node) {
-
 		if (node->vec_w(n) != 0){
 			feats.col(k) = node->vec_d;
 			new_w(i) = node->vec_w(n);
@@ -143,8 +142,7 @@ void sva::utils::solveLeastSquarePb(const Eigen::MatrixXd& yobs, sva::DictAndCoe
 	int i = 0;
 	int k = 0;
 	node = dictAndCoef.get_head();
-	while (node) {
-		
+	while (node) {	
 		if ( support(k) == i ) {
 			matD.col(k) = node->vec_d;
 			k++;
@@ -166,8 +164,7 @@ void sva::utils::solveLeastSquarePb(const Eigen::MatrixXd& yobs, sva::DictAndCoe
 	node = dictAndCoef.get_head();
 	k = 0;
 	i = 0;
-	while (node) {
-		
+	while (node) {	
 		if ( support(k) == i ) {
 			node->vec_w(n) = vecw(k);
 			node->mk++;
@@ -209,7 +206,6 @@ int sva::utils::it_ompMasked(const Eigen::VectorXd &cvecYobs,  const Eigen::cust
 	resisdual = cvecYobs;
 	const sva::Node* node = dictAndCoef.get_head();
 	while(node) {
-
 		if (node->vec_w(n) != 0){
 			feats.col(k) = cvecMask.cast<double>().cwiseProduct(node->vec_d);
 			new_w(i) = node->vec_w(n);
@@ -274,8 +270,7 @@ void sva::utils::solveMaskedLeastSquarePb(const Eigen::VectorXd& cvecYobs, const
 	int i = 0;
 	int k = 0;
 	node = dictAndCoef.get_head();
-	while (node) {
-		
+	while (node) {		
 		if ( support(k) == i ) {
 			matD.col(k) = cvecMask.cast<double>().cwiseProduct(node->vec_d);
 			k++;
@@ -297,8 +292,7 @@ void sva::utils::solveMaskedLeastSquarePb(const Eigen::VectorXd& cvecYobs, const
 	node = dictAndCoef.get_head();
 	k = 0;
 	i = 0;
-	while (node) {
-		
+	while (node) {	
 		if ( support(k) == i ) {
 			node->vec_w(n) = vecw(k);
 			node->mk++;

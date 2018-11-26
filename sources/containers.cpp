@@ -54,7 +54,6 @@ sva::DictAndCoef::DictAndCoef(int D, int N) {
 
 sva::DictAndCoef::~DictAndCoef() {
 	if (this->length > 0) {
-
 		sva::Node* node = this->head;
 		sva::Node* copy = nullptr;
     	while(node){
@@ -85,13 +84,11 @@ void sva::DictAndCoef::add(const Eigen::VectorXd& new_d, const Eigen::VectorXd& 
 	sva::Node *newNode = new sva::Node(this->D, this->N, new_d, new_coefs);
 
 	if (this->length == 0) {
-
 		this->head = newNode;
 		this->last = newNode;
 	}
 
 	else {
-
 		this->last->next = newNode;
 		this->last = newNode;
 	}
@@ -116,7 +113,6 @@ void sva::DictAndCoef::save(std::string filename) {
 	unsigned int k = 0;
 	sva::Node* node = this->head;
 	while (node) {
-
 		for (unsigned int d = 0; d < this->D; ++d)
 			dict(d, k) = node->vec_d[d];
 
@@ -128,8 +124,7 @@ void sva::DictAndCoef::save(std::string filename) {
 	}
 
 	// 2. Save
-	  if (file.is_open()) {
-	
+	  if (file.is_open()) {	
     	file << "{" << std::endl;
     	
     	file << "\t\"dim_D\": " << this->D << "," << std::endl;
@@ -146,8 +141,7 @@ void sva::DictAndCoef::save(std::string filename) {
 
 void sva::DictAndCoef::setCoefToZero(int n) {
 	sva::Node* node = this->head;
-	while (node) {
-		
+	while (node) {		
 		if ( std::abs(node->vec_w[n]) > 0) {
 			node->vec_w[n] = 0;
 			node->mk--;
@@ -164,8 +158,7 @@ void sva::DictAndCoef::setCoef(const Eigen::VectorXd &coefs, int n) {
 
 	sva::Node* node = this->head;
 
-	for (int k = 0; k < coefs.size(); ++k) {
-		
+	for (int k = 0; k < coefs.size(); ++k) {		
 		if (node->vec_w(n) != 0 ){
 			if (coefs(k) == 0)
 				node->mk--;
@@ -184,8 +177,7 @@ void sva::DictAndCoef::setCoef(const Eigen::VectorXd &coefs, int n) {
 void sva::DictAndCoef::get_featk(int k, Eigen::MatrixXd &dic, int t) const {
 	int i = 0;
 	sva::Node* node = this->head;
-	while (node) {
-		
+	while (node) {		
 		if (i == k) {
 			dic.col(t) = node->vec_d;
 			return;
@@ -202,8 +194,7 @@ void sva::DictAndCoef::get_support(int n, Eigen::VectorXi &output) const{
 	int i = 0;
 	int k = 0;
 	sva::Node* node = this->head;
-	while (node) {
-		
+	while (node) {	
 		if ( node->vec_w(n) != 0 ) {
 			output(k) = i;
 			k++;
@@ -249,8 +240,7 @@ void sva::DictAndCoef::print_KcolOfD(int k) {
 		throw std::invalid_argument( "k should be = 0" );
 
 	std::cout << "print the first " << k << " column of D" << std::endl;
-	for (unsigned int d = 0; d < this->D; ++d) {
-		
+	for (unsigned int d = 0; d < this->D; ++d) {	
 		sva::Node* node = this->head;
 		int nb = 0;
     	while(nb < k){
@@ -265,7 +255,6 @@ void sva::DictAndCoef::print_KcolOfD(int k) {
 void sva::DictAndCoef::clean_unuse_node() {
 	sva::Node* node = this->head;
 	while (node) {
-
 		if (node->mk == 0) {
 			sva::Node* copy = node;
 			node = node->next;
@@ -282,8 +271,7 @@ void sva::DictAndCoef::clean_unuse_node() {
 
 unsigned int sva::DictAndCoef::get_mk(unsigned int k) const {
 	sva::Node* node = this->head;
-	for (unsigned int t = 0; t < this->length; ++t) {
-		
+	for (unsigned int t = 0; t < this->length; ++t) {	
 		if (t == k)
 			return node->mk;
 
@@ -299,8 +287,7 @@ void sva::DictAndCoef::chainToMatrix(Eigen::MatrixXd &dic, Eigen::MatrixXd &coef
 	coefs.resize(this->length, this->N);
 
 	sva::Node* node = this->head;
-	for (unsigned int k = 0; k < this->length; ++k) {
-		
+	for (unsigned int k = 0; k < this->length; ++k) {		
 		for (unsigned int d = 0; d < this->D; ++d)
 			dic(d, k) = node->vec_d(d);
 

@@ -18,8 +18,7 @@ sva::DictAndCoef* sva::svaDLinpainting(const Eigen::MatrixXd &cmatYobs, const Ei
 	// Algorithm
 	sva::DictAndCoef *dictCoef = new sva::DictAndCoef(iD, iN);
 
-	for (int t = 0; t < nbIt; ++t) {
-		
+	for (int t = 0; t < nbIt; ++t) {		
 		// OMP step
 		sva::inpainting::_update_W_omp(cmatYobs, cmatMask, *dictCoef, lbd_reg1, lbd_reg2);
 
@@ -44,8 +43,7 @@ void sva::inpainting::_update_D(const Eigen::MatrixXd &cmatYobs, const Eigen::cu
 	if (iK == 0)
 		return;
 	   
-	for (int d = 0; d < iD; ++d) {
-		
+	for (int d = 0; d < iD; ++d) {	
 		Eigen::MatrixXd matBuf = Eigen::MatrixXd::Zero(iK, iK);
 		Eigen::VectorXd rwDupd = Eigen::VectorXd::Zero(iK);
 
@@ -58,7 +56,6 @@ void sva::inpainting::_update_D(const Eigen::MatrixXd &cmatYobs, const Eigen::cu
 			sva::Node* node2 = dictAndCoef.get_head();
 
 			while(node2) {
-
 				matBuf(irow, icol) = node1->vec_w.dot( node2->vec_w.cwiseProduct(cmatMask.row(d).transpose().cast<double>()) );
 				matBuf(icol, irow) = matBuf(irow, icol); // by symetry
 
@@ -124,7 +121,6 @@ void sva::inpainting::_update_W_omp(const Eigen::MatrixXd &cmatYobs, const Eigen
 	}
 
 	for (int n = 0; n < iN; ++n) {
-
 		/*****************************************
 		 *
 		 *			1. Performs OMP
@@ -143,7 +139,6 @@ void sva::inpainting::_update_W_omp(const Eigen::MatrixXd &cmatYobs, const Eigen
 
 		int sparsityLevel = 0;
 		while (iK > 0) { // if K == 0 this step is avoided
-
 			// // 1.1 Add coefficient
 			Eigen::VectorXd new_w;
 			int newk = sva::utils::it_ompMasked(cmatYobs.col(n), cmatMask.col(n), dictAndCoef, new_w, sparsityLevel, n);
@@ -186,7 +181,6 @@ void sva::inpainting::_update_W_omp(const Eigen::MatrixXd &cmatYobs, const Eigen
 		dictAndCoef.computeDHWn(n, cmatMask.col(n), HDw_n);
 		residual -= HDw_n;
 
-
 		/*****************************************
 		 *
 		 *		2. Delete unused feature
@@ -196,15 +190,12 @@ void sva::inpainting::_update_W_omp(const Eigen::MatrixXd &cmatYobs, const Eigen
 		dictAndCoef.clean_unuse_node();
 		iK = dictAndCoef.get_K();
 
-
-
 		/*****************************************
 		 *
 		 *	3. Add a new feature using residual error
 		 *
 		*****************************************/
 		if (addAtom) {
-
 			double err_before = (cmatYobs.col(n) - HDw_n).norm();
 			err_before *= err_before;
 
@@ -222,8 +213,7 @@ void sva::inpainting::_update_W_omp(const Eigen::MatrixXd &cmatYobs, const Eigen
 			double a1 = err_after + diffregu * (double(iK) + 1.) + lbd_reg2 * (sparsityLevel + 1.);
 			double a0 = err_before + diffregu * double(iK) + lbd_reg2 * sparsityLevel;
 
-			if (a1 < a0) {
-				
+			if (a1 < a0) {				
 				// Add feature
 				dictAndCoef.add(buf, n, coefnew);
 				iK++;

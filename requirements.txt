@@ -1,0 +1,6 @@
+setuptools      >= 38.0.0
+coverage        >=3.5.3
+matplotlib
+numpy
+wget
+eigency

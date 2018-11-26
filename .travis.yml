@@ -24,5 +24,4 @@ install:
 
 # Command to run tests. These are run for each configuration
 script:
-  - python --version
 - python setup.py test

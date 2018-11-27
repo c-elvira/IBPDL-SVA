@@ -1,7 +1,10 @@
 # IBPDL-SVA
-[![Build Status](https://travis-ci.com/c-elvira/IBPDL-SVA.svg?branch=master)](https://travis-ci.com/c-elvira/IBPDL-SVA)
-[![CodeFactor](https://www.codefactor.io/repository/github/c-elvira/ibpdl-sva/badge)](https://www.codefactor.io/repository/github/c-elvira/ibpdl-sva)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ebbafaa697754539bb8dddd4ad6c275f)](https://www.codacy.com/app/clement.elvira/IBPDL-SVA?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=c-elvira/IBPDL-SVA&amp;utm_campaign=Badge_Grade)
+| Linux & osx  | Quality  | Code Review  |
+|:-:|---|---|
+| [![Build Status](https://travis-ci.com/c-elvira/IBPDL-SVA.svg?branch=master)](https://travis-ci.com/c-elvira/IBPDL-SVA)  |   [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ebbafaa697754539bb8dddd4ad6c275f)](https://www.codacy.com/app/clement.elvira/IBPDL-SVA?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=c-elvira/IBPDL-SVA&amp;utm_campaign=Badge_Grade) |    [![CodeFactor](https://www.codefactor.io/repository/github/c-elvira/ibpdl-sva/badge)](https://www.codefactor.io/repository/github/c-elvira/ibpdl-sva) |
+
+
+
 
 This repository implements the IBP-DL SVA algorithm from [dang2018,elvira2018].
 

@@ -1,5 +1,5 @@
 # distutils: language = c++
-# distutils: sources = [sources/sva_algorithm.cpp, sources/sva_inpainting.cpp, sources/containers.cpp, sources/utils.cpp, sources/cythonInterface.cpp]
+# distutils: sources = [ibpdlsva/sources/sva_algorithm.cpp, ibpdlsva/sources/sva_inpainting.cpp, ibpdlsva/sources/containers.cpp, ibpdlsva/sources/utils.cpp, ibpdlsva/sources/cythonInterface.cpp]
 
 # Cython and Eigen
 # https://github.com/wouterboomsma/eigency

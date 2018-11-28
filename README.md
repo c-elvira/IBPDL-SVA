@@ -15,26 +15,20 @@ On Mac, you may need to install a compiler, *e.g.*, *gcc* (as part of the XCode 
 
 ## Install from sources
 
-1. Clone this repository
+### 1. Clone this repository
 
 ```
 git clone https://github.com/c-elvira/IBPDL-SVA.git
 cd IBPDL-SVA
 ```
 
-And execute `setup.py` using,  e.g. using `pip
-
-```
-pip3 install -r requirements.txt
-python3 setup.py build_ext --inplace
-```
-
-Or simply run
+And run
 ```
 ./install.sh
 ```
+to complete the installation.
 
-2. Test
+### 2. Test
 
 The installation can be tested using the following simple command
 ```

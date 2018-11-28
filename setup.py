@@ -12,14 +12,14 @@ import zipfile
 
 
 # Install Eigen
-path_lib = 'lib/Eigen'
+path_lib = 'ibpdlsva/lib/Eigen'
 if os.path.isdir(path_lib):
     print('Eigen is already installed')
     
 else:
     os.makedirs(path_lib)
     url_eigen = 'http://bitbucket.org/eigen/eigen/get/3.3.4.zip'
-    file = wget.download(url_eigen, out='lib/')
+    file = wget.download(url_eigen, out='ibpdlsva/lib/')
 
     with zipfile.ZipFile(file,"r") as zip_ref:
         zip_ref.extractall(path_lib)
@@ -31,14 +31,15 @@ if sys.platform == 'darwin':
     extensions = [
         Extension(
             'cSvaIbpDl',
-            glob('*.pyx') + glob('*.cxx'),
-            extra_compile_args=["-stdlib=libc++", "-std=c++11"])
+            glob('ibpdlsva/*.pyx') + glob('ibpdlsva/*.cxx'),
+            extra_compile_args=["-std=c++11", "-stdlib=libc++"])
     ]
 else:
+    # Linux and Windows
     extensions = [
         Extension(
             'cSvaIbpDl',
-            glob('*.pyx') + glob('*.cxx'),
+            glob('ibpdlsva/*.pyx') + glob('ibpdlsva/*.cxx'),
             extra_compile_args=["-std=c++11"])
     ]
 
@@ -47,8 +48,7 @@ else:
 setup(
     name = "cSvaIbpDl",
     ext_modules = cythonize(extensions),
-    language ="c++",
-    include_dirs = [".", "includes/", "sources/", 'lib/'] + eigency.get_includes(include_eigen=True),
+    include_dirs = [".", "ibpdlsva/includes/", "ibpdlsva/sources/", 'ibpdlsva/lib/'] + eigency.get_includes(include_eigen=True),
 
 
     version='0.1.dev',
@@ -60,7 +60,7 @@ setup(
     url='https://github.com/c-elvira/ibpdlsva',
 
     # Author details
-    author='celvira',
+    author='celvira, hphongdang',
     author_email='clement.elvira@inria.fr',
 
     # Choose your license

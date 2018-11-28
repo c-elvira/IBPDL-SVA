@@ -32,7 +32,7 @@ if sys.platform == 'darwin':
         Extension(
             'cSvaIbpDl',
             glob('ibpdlsva/*.pyx') + glob('ibpdlsva/*.cxx'),
-            extra_compile_args=["-g", "-std=c++11", "-stdlib=libc++"])
+            extra_compile_args=["-std=c++11", "-stdlib=libc++"])
     ]
 else:
     # Linux and Windows
